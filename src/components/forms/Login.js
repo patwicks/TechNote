@@ -6,29 +6,46 @@ import { LoginValidation } from "./validation/LoginValidation";
 const Login = () => {
   // state variables
   const [show, setShow] = useState(false);
+  // messages
+  const [errorMessage, setErrorMessage] = useState(null);
   //formik form
   const onSubmit = (values, actions) => {
     setTimeout(() => {
       try {
         console.log(values);
+        actions.setSubmitting(false);
       } catch (error) {
         console.log(error);
+        setErrorMessage(error.message);
       }
     }, 1000);
   };
-  const { values, handleSubmit, handleChange, handleBlur, errors, touched } =
-    useFormik({
-      initialValues: {
-        username: "",
-        password: "",
-      },
-      validationSchema: LoginValidation,
-      onSubmit,
-    });
+  const {
+    values,
+    handleSubmit,
+    handleChange,
+    handleBlur,
+    errors,
+    touched,
+    isSubmitting,
+  } = useFormik({
+    initialValues: {
+      username: "",
+      password: "",
+    },
+    validationSchema: LoginValidation,
+    onSubmit,
+  });
 
   return (
     <main className="center-content mt-24 min-w-[320px] columns-2 flex-row">
       <form className="w-full px-3 md:w-1/2" onSubmit={handleSubmit}>
+        {/* server error */}
+        {errorMessage !== null ? (
+          <p className="w-full rounded-sm bg-error-100 p-2 text-center text-sm text-error-200 lg:w-[30rem]">
+            {errorMessage}
+          </p>
+        ) : null}
         <div className="mb-10">
           <p className="text-3xl font-bold text-secondary-600">
             Let us make your tasks{" "}
@@ -58,7 +75,7 @@ const Login = () => {
           />
           {/* error */}
           {errors.username && touched.username && (
-            <p className="p-1 text-sm text-error">Username is required!</p>
+            <p className="p-1 text-sm text-error-200">{errors.username}</p>
           )}
         </div>
 
@@ -90,11 +107,11 @@ const Login = () => {
 
           {/* error */}
           {errors.password && touched.password && (
-            <p className="p-1 text-sm text-error">Password is required!</p>
+            <p className="p-1 text-sm text-error-200">{errors.password}</p>
           )}
         </div>
         <button className="form-btn" type="submit">
-          Sign in
+          {isSubmitting ? <p>Signing in...</p> : <p>Sign in</p>}
         </button>
         <p className="mt-5 text-sm">
           Don't have an Account?{" "}

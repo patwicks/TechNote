@@ -6,25 +6,37 @@ import { RegisterValidation } from "./validation/RegisterValidation";
 
 const Register = () => {
   const [show, setShow] = useState(false);
+  //
+  const [successMessage, setSuccessMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
   const onSubmit = (values, actions) => {
     setTimeout(() => {
       try {
         console.log(values);
+        actions.setSubmitting(false);
+        setSuccessMessage("Successfully registered!");
       } catch (error) {
-        console.log(error);
+        setErrorMessage(error.message);
       }
     }, 1000);
   };
-  const { values, touched, handleBlur, handleSubmit, handleChange, errors } =
-    useFormik({
-      initialValues: {
-        username: "",
-        password: "",
-        confirmPassword: "",
-      },
-      validationSchema: RegisterValidation,
-      onSubmit,
-    });
+  const {
+    values,
+    touched,
+    handleBlur,
+    handleSubmit,
+    handleChange,
+    errors,
+    isSubmitting,
+  } = useFormik({
+    initialValues: {
+      username: "",
+      password: "",
+      confirmPassword: "",
+    },
+    validationSchema: RegisterValidation,
+    onSubmit,
+  });
 
   return (
     <main className="center-content mt-20 min-w-[320px]">
@@ -32,6 +44,19 @@ const Register = () => {
         className="md:center-content w-full flex-col px-3 md:w-1/2"
         onSubmit={handleSubmit}
       >
+        {/* Success */}
+        {successMessage !== null ? (
+          <p className="w-full rounded-sm bg-success-100 p-2 text-center text-sm text-success-200 lg:w-[30rem]">
+            {successMessage}
+          </p>
+        ) : null}
+
+        {/* server error */}
+        {errorMessage !== null ? (
+          <p className="w-full rounded-sm bg-error-100 p-2 text-center text-sm text-error-200 lg:w-[30rem]">
+            {errorMessage}
+          </p>
+        ) : null}
         <div className="mb-10 lg:w-[30rem]">
           <p className="text-3xl font-bold text-secondary-600 md:mt-10">
             Start in creating your{" "}
@@ -56,7 +81,7 @@ const Register = () => {
           />
           {/* error */}
           {errors.username && touched.username && (
-            <p className="p-1 text-sm text-error">{errors.username}</p>
+            <p className="p-1 text-sm text-error-200">{errors.username}</p>
           )}
         </div>
 
@@ -75,7 +100,7 @@ const Register = () => {
           />
           {/* error */}
           {errors.password && touched.password && (
-            <p className="p-1 text-sm text-error">{errors.password}</p>
+            <p className="p-1 text-sm text-error-200">{errors.password}</p>
           )}
 
           {!show ? (
@@ -105,11 +130,13 @@ const Register = () => {
           />
           {/* error */}
           {errors.confirmPassword && touched.confirmPassword && (
-            <p className="p-1 text-sm text-error">{errors.confirmPassword}</p>
+            <p className="p-1 text-sm text-error-200">
+              {errors.confirmPassword}
+            </p>
           )}
         </div>
         <button className="form-btn" type="submit">
-          Sign up
+          {isSubmitting ? <p>Signing up...</p> : <p>Sign up</p>}
         </button>
         <p className="mt-5 text-sm">
           Already have an Account?{" "}

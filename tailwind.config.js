@@ -12,6 +12,10 @@ module.exports = {
     },
     colors: {
       primary: "#6C63FF",
+      success: {
+        100: "#ccffeb",
+        200: "#00cc7a",
+      },
       secondary: {
         100: "#ffffff",
         200: "#f2f2f2",
@@ -20,7 +24,10 @@ module.exports = {
         500: "#404040",
         600: "#1d1d1d",
       },
-      error: "#ff4d4d",
+      error: {
+        100: "#ffe6e6",
+        200: "#ff4d4d",
+      },
     },
     extend: {},
   },
