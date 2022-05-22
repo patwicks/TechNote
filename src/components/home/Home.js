@@ -2,12 +2,21 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import Login from "../forms/Login";
 import Tasks from "../task/Tasks";
+import SpinLoader from "../utilities/SpinLoader";
 
 const Home = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, authLoading } = useContext(AuthContext);
   return (
-    <div className="h-screen w-screen md:container ">
-      {currentUser ? <Tasks /> : <Login />}
+    <div className="h-screen w-screen min-w-[320px] md:container ">
+      <>
+        {authLoading ? (
+          <div className="mt-20 text-center">
+            <SpinLoader />
+          </div>
+        ) : (
+          <>{currentUser ? <Tasks /> : <Login />}</>
+        )}
+      </>
     </div>
   );
 };
