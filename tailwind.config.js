@@ -12,6 +12,7 @@ module.exports = {
     },
     colors: {
       primary: "#6C63FF",
+      primarylight: "#e7e6ff",
       success: {
         100: "#ccffeb",
         200: "#00cc7a",

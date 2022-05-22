@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { RegisterValidation } from "./validation/RegisterValidation";
+import SpinLoader from "../utilities/SpinLoader";
 
 const Register = () => {
   const [show, setShow] = useState(false);
@@ -60,7 +61,7 @@ const Register = () => {
         ) : null}
         <div className="mb-10 lg:w-[30rem]">
           <p className="text-3xl font-bold text-secondary-600 md:mt-10">
-            Start in creating your{" "}
+            Begin with creating your{" "}
             <span className="text-primary">Account!</span>
           </p>
           <p className="mt-2 text-sm text-secondary-500">
@@ -137,7 +138,7 @@ const Register = () => {
           )}
         </div>
         <button className="form-btn" type="submit">
-          {isSubmitting ? <p>Signing up...</p> : <p>Sign up</p>}
+          {isSubmitting ? <SpinLoader /> : <p>Sign up</p>}
         </button>
         <p className="mt-5 text-sm">
           Already have an Account?{" "}

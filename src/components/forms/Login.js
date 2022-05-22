@@ -5,6 +5,7 @@ import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { LoginValidation } from "./validation/LoginValidation";
 
 import { AuthContext } from "../../context/AuthContext";
+import SpinLoader from "../utilities/SpinLoader";
 const Login = () => {
   //context
   const { addUser } = useContext(AuthContext);
@@ -50,7 +51,7 @@ const Login = () => {
   });
 
   return (
-    <main className="center-content mt-24 min-w-[320px] columns-2 flex-row">
+    <main className="center-content mt-20 min-w-[320px] columns-2 flex-row">
       <form
         className="w-full px-3 md:w-1/2"
         onSubmit={handleSubmit}
@@ -126,8 +127,8 @@ const Login = () => {
             <p className="p-1 text-sm text-error-200">{errors.password}</p>
           )}
         </div>
-        <button className="form-btn" type="submit">
-          {isSubmitting ? <p>Signing in...</p> : <p>Sign in</p>}
+        <button disabled={isSubmitting} className="form-btn" type="submit">
+          {isSubmitting ? <SpinLoader /> : <p>Sign in</p>}
         </button>
         <p className="mt-5 text-sm">
           Don't have an Account?{" "}
