@@ -43,6 +43,7 @@ const Register = () => {
       <form
         className="md:center-content w-full flex-col px-3 md:w-1/2"
         onSubmit={handleSubmit}
+        autoComplete="off"
       >
         {/* Success */}
         {successMessage !== null ? (
