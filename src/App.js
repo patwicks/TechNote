@@ -8,6 +8,7 @@ import Home from "./components/home/Home";
 import Header from "./components/navigation/Header";
 import NotFound from "./components/notfound/NotFound";
 import { AuthProvider } from "./context/AuthContext";
+
 function App() {
   return (
     <div className="h-full w-full overflow-hidden md:container md:mx-auto">

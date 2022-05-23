@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
       return setCurrentUser(null);
     }
   }
-
+  
   useEffect(() => {
     checkIfLogin();
   }, []);
