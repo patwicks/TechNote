@@ -1,10 +1,10 @@
 import React, { useState, createContext, useEffect } from "react";
-
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
+
   function addUser(username) {
     localStorage.setItem("username", username);
   }
@@ -18,7 +18,11 @@ export const AuthProvider = ({ children }) => {
       return setCurrentUser(null);
     }
   }
-  
+  function handleLogout() {
+    localStorage.removeItem("username");
+    setCurrentUser(null);
+  }
+
   useEffect(() => {
     checkIfLogin();
   }, []);
@@ -31,6 +35,7 @@ export const AuthProvider = ({ children }) => {
         setCurrentUser,
         addUser,
         authLoading,
+        handleLogout,
       }}
     >
       {children}
