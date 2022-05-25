@@ -21,7 +21,7 @@ const Header = () => {
       {currentUser && (
         <div className="center-content">
           <p className="text-[0.7rem] font-semibold uppercase text-secondary-500">
-            {currentUser}
+            {currentUser?.username}
           </p>
           <div className="ml-2 h-8 w-8 overflow-hidden rounded-full border-2 border-secondary-400 bg-primary">
             <img

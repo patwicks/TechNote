@@ -1,20 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { GiNotebook } from "react-icons/gi";
 import { MdLibraryAdd } from "react-icons/md";
 import TaskDetails from "./TaskDetails";
+import { AuthContext } from "../../context/AuthContext";
 const Tasks = () => {
   const navigate = useNavigate();
-  const testMap = [
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-    { id: 7 },
-    { id: 8 },
-  ];
+  const { currentUser } = useContext(AuthContext);
+  console.log(currentUser.tasks);
+
   return (
     <div className="h-screen w-full overflow-hidden px-2 pt-12">
       <div className="mt-2 flex h-12 w-full items-center justify-between bg-secondary-300 p-2">
@@ -33,9 +27,17 @@ const Tasks = () => {
       </div>
       {/* task lsi container */}
       <div className="center-content flex h-[85vh] w-full flex-row flex-wrap gap-4 overflow-scroll bg-secondary-200 p-2 drop-shadow-xl">
-        {testMap?.map((item) => (
-          <TaskDetails key={item.id} />
-        ))}
+        {currentUser.tasks.length !== 0 ? (
+          <>
+            {currentUser.tasks?.map((item) => (
+              <TaskDetails key={item.id} />
+            ))}
+          </>
+        ) : (
+          <p className="mt-5 text-center text-secondary-500">
+            Create a task for today
+          </p>
+        )}
       </div>
     </div>
   );

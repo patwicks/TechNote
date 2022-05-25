@@ -1,24 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { RegisterValidation } from "./validation/RegisterValidation";
 import SpinLoader from "../utilities/SpinLoader";
+import { AuthContext } from "../../context/AuthContext";
 
 const Register = () => {
+  const { serverErrorReg, serverSuccess, addUser } = useContext(AuthContext);
   const [show, setShow] = useState(false);
   //
-  const [successMessage, setSuccessMessage] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null);
   const onSubmit = (values, actions) => {
     setTimeout(() => {
-      try {
-        console.log(values);
-        actions.setSubmitting(false);
-        setSuccessMessage("Successfully registered!");
-      } catch (error) {
-        setErrorMessage(error.message);
-      }
+      addUser({ username: values.username, password: values.password });
+      actions.setSubmitting(false);
     }, 1000);
   };
   const {
@@ -47,16 +42,16 @@ const Register = () => {
         autoComplete="off"
       >
         {/* Success */}
-        {successMessage !== null ? (
+        {serverSuccess !== null ? (
           <p className="w-full rounded-sm bg-success-100 p-2 text-center text-sm text-success-200 lg:w-[30rem]">
-            {successMessage}
+            {serverSuccess}
           </p>
         ) : null}
 
         {/* server error */}
-        {errorMessage !== null ? (
+        {serverErrorReg !== null ? (
           <p className="w-full rounded-sm bg-error-100 p-2 text-center text-sm text-error-200 lg:w-[30rem]">
-            {errorMessage}
+            {serverErrorReg}
           </p>
         ) : null}
         <div className="mb-10 lg:w-[30rem]">

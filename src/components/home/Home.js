@@ -5,7 +5,7 @@ import Tasks from "../task/Tasks";
 import SpinLoader from "../utilities/SpinLoader";
 
 const Home = () => {
-  const { currentUser, authLoading } = useContext(AuthContext);
+  const { authLoading, isLogin } = useContext(AuthContext);
   return (
     <div className="h-screen w-screen min-w-[320px] md:container ">
       <>
@@ -14,7 +14,7 @@ const Home = () => {
             <SpinLoader />
           </div>
         ) : (
-          <>{currentUser ? <Tasks /> : <Login />}</>
+          <>{isLogin ? <Tasks /> : <Login />}</>
         )}
       </>
     </div>

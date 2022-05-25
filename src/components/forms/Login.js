@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { LoginValidation } from "./validation/LoginValidation";
@@ -8,32 +8,19 @@ import { AuthContext } from "../../context/AuthContext";
 import SpinLoader from "../utilities/SpinLoader";
 const Login = () => {
   //context
-  const { addUser } = useContext(AuthContext);
-  // navigate page home
-  let navigate = useNavigate();
+  const { serverError, handleLogin, isLogin } = useContext(AuthContext);
+
   // state variables
   const [show, setShow] = useState(false);
-  // messages
-  const [errorMessage, setErrorMessage] = useState(null);
-  //reload page
-  function refreshPage() {
-    window.location.reload(false);
-  }
+
   //formik form
   const onSubmit = (values, actions) => {
     setTimeout(() => {
-      try {
-        addUser(values.username);
-        actions.setSubmitting(false);
-        refreshPage();
-        navigate("/");
-      } catch (error) {
-        console.log(error);
-        setErrorMessage(error.message);
-      }
+      handleLogin(values);
+      actions.setSubmitting(false);
     }, 1000);
   };
-  
+
   const {
     values,
     handleSubmit,
@@ -59,9 +46,9 @@ const Login = () => {
         autoComplete="off"
       >
         {/* server error */}
-        {errorMessage !== null ? (
+        {serverError !== null ? (
           <p className="w-full rounded-sm bg-error-100 p-2 text-center text-sm text-error-200 lg:w-[30rem]">
-            {errorMessage}
+            {serverError}
           </p>
         ) : null}
         <div className="mb-10">

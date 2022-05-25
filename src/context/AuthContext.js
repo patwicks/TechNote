@@ -1,32 +1,58 @@
 import React, { useState, createContext, useEffect } from "react";
+// API
+import API from "../api/Api";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
+  const [isLogin, setIsLogin] = useState();
+  const [serverError, setServerError] = useState(null);
+  const [serverErrorReg, setServerErrorReg] = useState(null);
+  const [serverSuccess, setServerSuccess] = useState(null);
 
-  function addUser(username) {
-    localStorage.setItem("username", username);
-  }
-  function checkIfLogin() {
-    const usernameExist = localStorage.getItem("username");
-    if (usernameExist) {
-      setAuthLoading(false);
-      return setCurrentUser(usernameExist);
-    } else {
-      setAuthLoading(false);
-      return setCurrentUser(null);
+  const addUser = async (data) => {
+    try {
+      const res = await API.post("/user/register", data);
+      if (res.data) {
+        setServerSuccess(res.data.successMessage);
+      }
+    } catch (error) {
+      setServerErrorReg(error.response.data);
     }
-  }
-  function handleLogout() {
+  };
+  const checkIfLogin = async () => {
+    try {
+      const res = await API.get("/user/autosignin", { withCredentials: true });
+      if (res.data) {
+        setAuthLoading(false);
+        setIsLogin(res.data.isLogin);
+        setCurrentUser(res.data.user);
+      }
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+  const handleLogin = async (data) => {
+    try {
+      const res = await API.post("/user/login", data, {
+        withCredentials: true,
+      });
+      if (res.data) {
+        setCurrentUser(res.data.user);
+        window.location.reload(false);
+      }
+    } catch (error) {
+      setServerError(error.response.data.errorMessage);
+    }
+  };
+  const handleLogout = async () => {
     localStorage.removeItem("username");
     setCurrentUser(null);
-  }
-
+  };
   useEffect(() => {
     checkIfLogin();
   }, []);
-
   return (
     <AuthContext.Provider
       value={{
@@ -36,6 +62,11 @@ export const AuthProvider = ({ children }) => {
         addUser,
         authLoading,
         handleLogout,
+        handleLogin,
+        isLogin,
+        serverError,
+        serverErrorReg,
+        serverSuccess,
       }}
     >
       {children}
