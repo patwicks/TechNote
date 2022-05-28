@@ -7,8 +7,6 @@ import { AuthContext } from "../../context/AuthContext";
 const Tasks = () => {
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
-  console.log(currentUser.tasks);
-
   return (
     <div className="h-screen w-full overflow-hidden px-2 pt-12">
       <div className="mt-2 flex h-12 w-full items-center justify-between bg-secondary-300 p-2">
@@ -27,15 +25,15 @@ const Tasks = () => {
       </div>
       {/* task lsi container */}
       <div className="center-content flex h-[85vh] w-full flex-row flex-wrap gap-4 overflow-scroll bg-secondary-200 p-2 drop-shadow-xl">
-        {currentUser.tasks.length !== 0 ? (
+        {currentUser.task.length !== 0 ? (
           <>
-            {currentUser.tasks?.map((item) => (
+            {currentUser.task?.map((item) => (
               <TaskDetails key={item.id} />
             ))}
           </>
         ) : (
           <p className="mt-5 text-center text-secondary-500">
-            Create a task for today
+            Create tasks for today
           </p>
         )}
       </div>

@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
   };
   const checkIfLogin = async () => {
     try {
-      const res = await API.get("/user/autosignin", { withCredentials: true });
+      const res = await API.get("/user/login/auto", { withCredentials: true });
       if (res.data) {
         setAuthLoading(false);
         setIsLogin(res.data.isLogin);
@@ -47,8 +47,18 @@ export const AuthProvider = ({ children }) => {
     }
   };
   const handleLogout = async () => {
-    localStorage.removeItem("username");
-    setCurrentUser(null);
+    try {
+      const res = await API.delete("/user/logout", { withCredentials: true });
+      setAuthLoading(true);
+      if (res.data) {
+        setTimeout(() => {
+          setAuthLoading(false);
+          checkIfLogin();
+        }, 3000);
+      }
+    } catch (error) {
+      console.log(error.response);
+    }
   };
   useEffect(() => {
     checkIfLogin();

@@ -11,7 +11,12 @@ const userRoutes = require("./routes/route.user");
 dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 
 //app routes
 app.use("/api/user", userRoutes);
