@@ -14,6 +14,7 @@ const Register = () => {
     setTimeout(() => {
       addUser({ username: values.username, password: values.password });
       actions.setSubmitting(false);
+      actions.resetForm();
     }, 1000);
   };
   const {

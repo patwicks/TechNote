@@ -7,6 +7,7 @@ const app = express();
 
 //router
 const userRoutes = require("./routes/route.user");
+const taskRoutes = require("./routes/route.task");
 //middlewares
 dotenv.config();
 app.use(express.json());
@@ -20,6 +21,7 @@ app.use(
 
 //app routes
 app.use("/api/user", userRoutes);
+app.use("/api/task", taskRoutes);
 //database
 mongoose.connect(process.env.DB_CONNECTION_STRING, {
   useNewUrlParser: true,

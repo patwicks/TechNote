@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { GiNotebook } from "react-icons/gi";
 import { MdLibraryAdd } from "react-icons/md";
 import TaskDetails from "./TaskDetails";
-import { AuthContext } from "../../context/AuthContext";
+
+import { TaskContext } from "../../context/TaskContext"; //context for task
 const Tasks = () => {
   const navigate = useNavigate();
-  const { currentUser } = useContext(AuthContext);
+  const { tasks } = useContext(TaskContext);
+
   return (
     <div className="h-screen w-full overflow-hidden px-2 pt-12">
       <div className="mt-2 flex h-12 w-full items-center justify-between bg-secondary-300 p-2">
@@ -25,10 +27,10 @@ const Tasks = () => {
       </div>
       {/* task lsi container */}
       <div className="center-content flex h-[85vh] w-full flex-row flex-wrap gap-4 overflow-scroll bg-secondary-200 p-2 drop-shadow-xl">
-        {currentUser.task.length !== 0 ? (
+        {tasks?.length !== 0 ? (
           <>
-            {currentUser.task?.map((item) => (
-              <TaskDetails key={item.id} />
+            {tasks?.map((item) => (
+              <TaskDetails key={item._id} task={item}/>
             ))}
           </>
         ) : (

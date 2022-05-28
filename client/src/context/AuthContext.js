@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
         setServerSuccess(res.data.successMessage);
       }
     } catch (error) {
-      setServerErrorReg(error.response.data);
+      setServerErrorReg(error.response.data.errorMessage);
     }
   };
   const checkIfLogin = async () => {

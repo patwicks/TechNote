@@ -8,22 +8,25 @@ import Home from "./components/home/Home";
 import Header from "./components/navigation/Header";
 import NotFound from "./components/notfound/NotFound";
 import { AuthProvider } from "./context/AuthContext";
+import { TaskProvider } from "./context/TaskContext";
 
 function App() {
   return (
     <div className="h-full w-full overflow-hidden md:container md:mx-auto">
       <AuthProvider>
-        <BrowserRouter>
-          <Header />
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/addtask" element={<AddTaskForm />} />
-            <Route path="/account" element={<Account />} />
-            <Route path="/taskedit/:id" element={<EditTaskForm />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+        <TaskProvider>
+          <BrowserRouter>
+            <Header />
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/addtask" element={<AddTaskForm />} />
+              <Route path="/account" element={<Account />} />
+              <Route path="/taskedit/:id" element={<EditTaskForm />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TaskProvider>
       </AuthProvider>
     </div>
   );
