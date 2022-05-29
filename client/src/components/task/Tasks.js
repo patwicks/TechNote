@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GiNotebook } from "react-icons/gi";
 import { MdLibraryAdd } from "react-icons/md";
@@ -7,10 +7,29 @@ import TaskDetails from "./TaskDetails";
 import { TaskContext } from "../../context/TaskContext"; //context for task
 const Tasks = () => {
   const navigate = useNavigate();
-  const { tasks } = useContext(TaskContext);
+  const {
+    unfinishedTasks,
+    serverError,
+    serverSuccess,
+    setServerSuccess,
+    setServerError,
+  } = useContext(TaskContext);
+  const [show, setShow] = useState(true);
+
+  useEffect(() => {
+    const time = setTimeout(() => {
+      setShow(false);
+      setServerSuccess(null);
+      setServerError(null);
+    }, [4000]);
+
+    return () => {
+      clearTimeout(time);
+    };
+  }, [setServerSuccess, setServerError]);
 
   return (
-    <div className="h-screen w-full overflow-hidden px-2 pt-12">
+    <div className="h-full w-full overflow-hidden px-2 pt-12">
       <div className="mt-2 flex h-12 w-full items-center justify-between bg-secondary-300 p-2">
         <div className="flex h-full items-center justify-around">
           <GiNotebook className="text-xl text-secondary-500" />
@@ -20,23 +39,37 @@ const Tasks = () => {
           <MdLibraryAdd
             className="smooth-transition mr-1 cursor-pointer text-xl hover:text-2xl hover:text-primary"
             onClick={() => {
-              navigate("/addtask");
+              navigate("/task/create");
             }}
           />
         </div>
       </div>
-      {/* task lsi container */}
-      <div className="center-content flex h-[85vh] w-full flex-row flex-wrap gap-4 overflow-scroll bg-secondary-200 p-2 drop-shadow-xl">
-        {tasks?.length !== 0 ? (
+
+      {serverSuccess && show ? (
+        <p className="mt-1 w-full bg-success-100 p-2 text-center text-sm text-success-200">
+          {serverSuccess}
+        </p>
+      ) : null}
+      {serverError && show ? (
+        <p className="mt-1 w-full bg-error-100 p-2 text-center text-sm text-error-200">
+          {serverError}
+        </p>
+      ) : null}
+
+      {/* task list container */}
+      <div className="flex h-[85vh] w-full flex-row flex-wrap gap-4 overflow-scroll bg-secondary-200 p-2 drop-shadow-xl">
+        {unfinishedTasks?.length !== 0 ? (
           <>
-            {tasks?.map((item) => (
-              <TaskDetails key={item._id} task={item}/>
+            {unfinishedTasks?.map((item) => (
+              <TaskDetails key={item._id} task={item} />
             ))}
           </>
         ) : (
-          <p className="mt-5 text-center text-secondary-500">
-            Create tasks for today
-          </p>
+          <div className="flex h-full w-full items-center justify-center">
+            <p className="mt-5 text-center text-secondary-500">
+              Create tasks for today
+            </p>
+          </div>
         )}
       </div>
     </div>

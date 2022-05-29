@@ -7,7 +7,7 @@ import SpinLoader from "../utilities/SpinLoader";
 const Home = () => {
   const { authLoading, isLogin } = useContext(AuthContext);
   return (
-    <div className="h-screen w-screen min-w-[320px] md:container ">
+    <div className="h-screen w-screen min-w-[320px] md:container">
       <>
         {authLoading ? (
           <div className="mt-20 text-center">

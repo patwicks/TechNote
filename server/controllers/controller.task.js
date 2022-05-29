@@ -23,7 +23,7 @@ exports.CREATE_TASK = async (req, res) => {
         if (addToTask) {
           return res
             .status(200)
-            .json({ successMessage: "Successfully add task!" });
+            .json({ successMessage: "Task successfully created!" });
         } else {
           return res
             .status(400)
@@ -71,13 +71,20 @@ exports.EDIT_TASK = async (req, res) => {
 exports.POPULATE_TASK = async (req, res) => {
   try {
     const { userId } = req.params;
-    const populatedTask = await User.findById(userId).populate("task");
-    if (!populatedTask) {
+    const unfinishedTask = await User.findById(userId).populate("task", null, {
+      status: "unfinished",
+    });
+    const finishedTask = await User.findById(userId).populate("task", null, {
+      status: "finished",
+    });
+    if (!unfinishedTask) {
       return res
         .status(400)
         .json({ errorMessage: "Failed to get tasks data!" });
     } else {
-      return res.status(200).json(populatedTask.task);
+      return res
+        .status(200)
+        .json({ unfinished: unfinishedTask.task, finished: finishedTask.task});
     }
   } catch (error) {
     console.log(error.message);

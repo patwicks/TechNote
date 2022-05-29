@@ -20,9 +20,9 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Home />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/addtask" element={<AddTaskForm />} />
+              <Route path="/task/create" element={<AddTaskForm />} />
               <Route path="/account" element={<Account />} />
-              <Route path="/taskedit/:id" element={<EditTaskForm />} />
+              <Route path="/task/update/:taskId" element={<EditTaskForm />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
