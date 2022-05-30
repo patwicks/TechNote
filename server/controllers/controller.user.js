@@ -52,7 +52,7 @@ exports.REGISTER_USER = async (req, res) => {
       }
     }
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
     return res.status(200).json({
       errorMessage: "Something went wrong on registering, try again!",
     });
@@ -81,12 +81,14 @@ exports.LOGIN_USER = async (req, res) => {
           .status(400)
           .json({ errorMessage: "Invalid username or password!" });
       } else {
-        //assign a token and save it to browser cookie
-        const cookie = createToken(user._id, process.env.TOKEN_SECRET);
+        //assign a token and save it to browser cookies
+        const token = createToken(user._id, process.env.TOKEN_SECRET);
 
-        res.cookie("token", cookie, {
+        res.cookie("token", token, {
           httpOnly: true,
           maxAge: expiration * 1000,
+          secure: true,
+          sameSite: "none",
         });
 
         res.status(200).json({ successMessage: "Successfully login", user });

@@ -8,7 +8,7 @@ import { AuthContext } from "../../context/AuthContext";
 import SpinLoader from "../utilities/SpinLoader";
 const Login = () => {
   //context
-  const { serverError, handleLogin, isLogin } = useContext(AuthContext);
+  const { serverError, handleLogin } = useContext(AuthContext);
 
   // state variables
   const [show, setShow] = useState(false);
@@ -39,7 +39,7 @@ const Login = () => {
   });
 
   return (
-    <main className="center-content mt-20 min-w-[320px] columns-2 flex-row">
+    <main className="center-content mt-20 min-w-[320px] md:columns-2">
       <form
         className="w-full px-3 md:w-1/2"
         onSubmit={handleSubmit}
