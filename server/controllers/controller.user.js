@@ -197,7 +197,12 @@ exports.CHANGE_PASSWORD = async (req, res) => {
 //logout a user
 exports.LOGOUT_USER = async (req, res) => {
   try {
-    res.cookie("token", "", { maxAge: 1 });
+    res.cookie("token", "", {
+      httpOnly: true,
+      maxAge: 1,
+      secure: true,
+      sameSite: "none",
+    });
     res.json({ successMessage: "You have been logout!" });
   } catch (error) {
     console.log(error.message);

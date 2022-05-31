@@ -5,6 +5,8 @@ import { AuthContext } from "../../context/AuthContext";
 //icons
 import { MdManageAccounts } from "react-icons/md";
 import { IoMdLogOut } from "react-icons/io";
+//image
+import defaultWebp from "../../assets/images/default.webp";
 
 const Header = () => {
   const { currentUser, handleLogout } = useContext(AuthContext);
@@ -26,7 +28,7 @@ const Header = () => {
           <div className="ml-2 h-8 w-8 overflow-hidden rounded-full border-2 border-secondary-400 bg-primary">
             <img
               className="h-full w-full object-cover object-center"
-              src={require("../../assets/images/default.png")}
+              src={defaultWebp}
               alt="Profile"
             ></img>
           </div>

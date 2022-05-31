@@ -3,6 +3,9 @@ import { TaskContext } from "../../context/TaskContext";
 import { AuthContext } from "../../context/AuthContext";
 //icons
 import { MdDashboard } from "react-icons/md";
+//image
+import defaultWebp from "../../assets/images/default.webp";
+
 export const AccountDashboard = () => {
   const { finishedTasks, unfinishedTasks } = useContext(TaskContext);
   const { currentUser } = useContext(AuthContext);
@@ -16,7 +19,7 @@ export const AccountDashboard = () => {
         <div className="center-content h-20 w-20 overflow-hidden rounded-full">
           <img
             className="h-full w-full object-cover object-center"
-            src={require("../../assets/images/default.png")}
+            src={defaultWebp}
             alt="Profile"
           />
         </div>

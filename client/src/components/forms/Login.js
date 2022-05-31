@@ -1,11 +1,16 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
+//icon
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
-import { LoginValidation } from "./validation/LoginValidation";
-
+//context
 import { AuthContext } from "../../context/AuthContext";
+//components
 import SpinLoader from "../utilities/SpinLoader";
+import { LoginValidation } from "./validation/LoginValidation";
+//image
+import loginWebp from "../../assets/images/img_todo_form.webp";
+
 const Login = () => {
   //context
   const { serverError, handleLogin } = useContext(AuthContext);
@@ -129,7 +134,7 @@ const Login = () => {
       <div className="center-content hidden w-full overflow-hidden md:block md:w-1/2">
         <img
           className="object-cover object-center"
-          src={require("../../assets/images/img_todo_form.png")}
+          src={loginWebp}
           alt="Notes"
         />
       </div>
