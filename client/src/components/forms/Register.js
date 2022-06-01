@@ -56,16 +56,19 @@ const Register = () => {
           </p>
         ) : null}
         <div className="mb-10 lg:w-[30rem]">
-          <p className="text-3xl font-bold text-secondary-600 md:mt-10">
+          <p className="text-3xl font-bold text-secondary-600 dark:text-secondary-100 md:mt-10">
             Begin with creating your{" "}
             <span className="text-primary">Account!</span>
           </p>
-          <p className="mt-2 text-sm text-secondary-500">
+          <p className="mt-2 text-sm text-secondary-500 dark:text-secondary-400">
             Enter your account details or informations.
           </p>
         </div>
         <div className="mb-7 w-full lg:w-[30rem]">
-          <label className="text-secondary-500" htmlFor="username">
+          <label
+            className="text-secondary-500 dark:text-secondary-400"
+            htmlFor="username"
+          >
             Username
           </label>
           <input
@@ -83,8 +86,11 @@ const Register = () => {
           )}
         </div>
 
-        <div className="relative mb-7 w-full lg:w-[30rem]">
-          <label className="text-secondary-500" htmlFor="password">
+        <div className="relative mb-7 w-full lg:w-[30rem] ">
+          <label
+            className="text-secondary-500 dark:text-secondary-400"
+            htmlFor="password"
+          >
             Password
           </label>
           <input
@@ -114,7 +120,10 @@ const Register = () => {
           )}
         </div>
         <div className="mb-7 w-full lg:w-[30rem]">
-          <label className="text-secondary-500" htmlFor="confirmPassword">
+          <label
+            className="text-secondary-500 dark:text-secondary-400"
+            htmlFor="confirmPassword"
+          >
             Confirm password
           </label>
           <input
@@ -136,7 +145,7 @@ const Register = () => {
         <button className="form-btn" type="submit">
           {isSubmitting ? <SpinLoader /> : <p>Sign up</p>}
         </button>
-        <p className="mt-5 text-sm">
+        <p className="mt-5 text-sm dark:text-secondary-400">
           Already have an Account?{" "}
           <span className="text-primary hover:underline">
             <Link to="/">Sign in</Link>

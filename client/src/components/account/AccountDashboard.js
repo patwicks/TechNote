@@ -23,15 +23,13 @@ export const AccountDashboard = () => {
             alt="Profile"
           />
         </div>
-        <p className="text-md mt-2 font-medium uppercase text-secondary-500">
+        <p className="text-md mt-2 font-medium uppercase text-secondary-500 dark:text-secondary-400">
           {currentUser?.username}
         </p>
       </div>
-      <div className="dropshadow-lg my-5 flex w-full items-center rounded-sm bg-secondary-200 px-2 py-3">
-        <MdDashboard className="mr-2 text-xl text-secondary-400" />
-        <h2 className="text-sm uppercase text-secondary-400">
-          Progress Dashbord
-        </h2>
+      <div className="dropshadow-lg my-5 flex w-full items-center rounded-sm bg-secondary-200 px-2 py-3 dark:bg-maxdark">
+        <MdDashboard className="mr-2 text-xl text-secondary-500 dark:text-secondary-400" />
+        <h2 className="text-sm text-secondary-500 dark:text-secondary-400">Progress Dashbord</h2>
       </div>
       <div className="flex w-full flex-wrap items-center justify-center gap-8 md:gap-5">
         {/* task done */}

@@ -9,7 +9,7 @@ import { AuthContext } from "../../context/AuthContext";
 import SpinLoader from "../utilities/SpinLoader";
 import { LoginValidation } from "./validation/LoginValidation";
 //image
-import loginWebp from "../../assets/images/img_todo_form.webp";
+import loginWebp from "../../assets/images/img_todo_form.svg";
 
 const Login = () => {
   //context
@@ -44,7 +44,7 @@ const Login = () => {
   });
 
   return (
-    <main className="center-content mt-20 min-w-[320px] md:columns-2">
+    <main className="center-content mt-20 min-w-[320px] md:columns-2 md:pt-10">
       <form
         className="w-full px-3 md:w-1/2"
         onSubmit={handleSubmit}
@@ -57,7 +57,7 @@ const Login = () => {
           </p>
         ) : null}
         <div className="mb-10">
-          <p className="text-3xl font-bold text-secondary-600">
+          <p className="text-3xl font-bold text-secondary-600 dark:text-secondary-100">
             Let us make your tasks{" "}
             <span
               className="text-primary
@@ -66,12 +66,15 @@ const Login = () => {
               Organized!
             </span>
           </p>
-          <p className="mt-2 text-sm text-secondary-500">
+          <p className="mt-2 text-sm text-secondary-500 dark:text-secondary-400">
             Enter your account details or informations.
           </p>
         </div>
         <div className="mb-7 w-full lg:w-[30rem]">
-          <label className="text-secondary-500" htmlFor="username">
+          <label
+            className="text-secondary-500 dark:text-secondary-400"
+            htmlFor="username"
+          >
             Username
           </label>
           <input
@@ -90,7 +93,10 @@ const Login = () => {
         </div>
 
         <div className="relative mb-7 w-full lg:w-[30rem]">
-          <label className="text-secondary-500" htmlFor="password">
+          <label
+            className="text-secondary-500 dark:text-secondary-400"
+            htmlFor="password"
+          >
             Password
           </label>
           <input
@@ -123,7 +129,7 @@ const Login = () => {
         <button disabled={isSubmitting} className="form-btn" type="submit">
           {isSubmitting ? <SpinLoader /> : <p>Sign in</p>}
         </button>
-        <p className="mt-5 text-sm">
+        <p className="mt-5 text-sm dark:text-secondary-400">
           Don't have an Account?{" "}
           <span className="text-primary hover:underline">
             <Link to="/register">Register</Link>

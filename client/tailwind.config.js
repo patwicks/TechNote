@@ -1,5 +1,6 @@
 module.exports = {
   content: ["./src/**/*.{js, jsx, ts, tsx}"],
+  darkMode: "class",
   theme: {
     // screens: {
     //   sm: "480px",
@@ -13,6 +14,8 @@ module.exports = {
     colors: {
       primary: "#6C63FF",
       primarylight: "#e7e6ff",
+      darkmode: "#243447",
+      maxdark: "#1a2533",
       success: {
         100: "#ccffeb",
         200: "#00cc7a",
@@ -25,6 +28,7 @@ module.exports = {
         500: "#404040",
         600: "#1d1d1d",
       },
+
       error: {
         100: "#ffe6e6",
         200: "#ff4d4d",

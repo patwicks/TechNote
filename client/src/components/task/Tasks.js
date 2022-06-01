@@ -29,15 +29,17 @@ const Tasks = () => {
   }, [setServerSuccess, setServerError]);
 
   return (
-    <div className="h-full w-full overflow-hidden px-2 pt-12">
-      <div className="mt-2 flex h-12 w-full items-center justify-between bg-secondary-300 p-2">
+    <div className="h-full w-full overflow-hidden rounded-sm px-2 pt-12">
+      <div className="mt-2 flex h-12 w-full items-center justify-between rounded-sm bg-secondary-300 p-2 dark:bg-maxdark">
         <div className="flex h-full items-center justify-around">
-          <GiNotebook className="text-xl text-secondary-500" />
-          <p className="ml-1 font-semibold text-secondary-500">Today's Tasks</p>
+          <GiNotebook className="text-xl text-secondary-500 dark:text-secondary-400" />
+          <p className="ml-1 font-semibold text-secondary-500 dark:text-secondary-400">
+            Today's Tasks
+          </p>
         </div>
         <div>
           <MdLibraryAdd
-            className="smooth-transition mr-1 cursor-pointer text-xl hover:text-2xl hover:text-primary"
+            className="smooth-transition mr-1 cursor-pointer text-xl hover:text-2xl hover:text-primary dark:text-secondary-100"
             onClick={() => {
               navigate("/task/create");
             }}
@@ -57,7 +59,7 @@ const Tasks = () => {
       ) : null}
 
       {/* task list container */}
-      <div className="flex justify-center h-[85vh] w-full flex-row flex-wrap gap-8 md:gap-5 overflow-scroll bg-secondary-200 p-2 drop-shadow-xl">
+      <div className="flex h-[85vh] w-full flex-row flex-wrap justify-center gap-8 overflow-scroll bg-secondary-200 p-2 drop-shadow-xl dark:bg-maxdark md:gap-5">
         {unfinishedTasks?.length !== 0 ? (
           <>
             {unfinishedTasks?.map((item) => (

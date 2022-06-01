@@ -47,12 +47,12 @@ const AddTaskForm = () => {
     <div className="flex h-full w-full flex-col px-4 pt-20">
       <div className="flex w-full items-center">
         <MdOutlineArrowBackIosNew
-          className="smooth-transistion cursor-pointer text-xl hover:text-primary"
+          className="smooth-transistion cursor-pointer text-xl hover:text-primary dark:text-secondary-100"
           onClick={() => navigate("/")}
         />
-        <p className="ml-1 text-secondary-500">Back</p>
+        <p className="ml-1 text-secondary-500 dark:text-secondary-400">Back</p>
       </div>
-      <h1 className="my-5 text-center text-lg uppercase text-secondary-500">
+      <h1 className="my-5 text-center text-lg uppercase text-secondary-500 dark:text-secondary-400">
         Add your new Task
       </h1>
       <form
