@@ -14,6 +14,8 @@ A simple online daily task manager - MERN Project
 - Context API
 
 <p align="center">
+<img src="https://github.com/patwicks/TechNote/blob/master/dark-login.png" width="600" height="400">
+<img src="https://github.com/patwicks/TechNote/blob/master/dark-home.png" width="600" height="400" >
 <img src="https://github.com/patwicks/TechNote/blob/master/technote_login.png" width="600" height="400">
 <img src="https://github.com/patwicks/TechNote/blob/master/Technote_Home.png" width="600" height="400" >
 </p>
