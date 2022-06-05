@@ -42,7 +42,7 @@ const Login = () => {
     validationSchema: LoginValidation,
     onSubmit,
   });
-
+  
   return (
     <main className="center-content mt-20 min-w-[320px] md:columns-2 md:pt-10">
       <form
