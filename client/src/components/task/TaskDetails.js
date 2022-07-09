@@ -12,7 +12,7 @@ const TaskDetails = ({ task }) => {
 
   const createdAt = moment(task?.createdAt).calendar();
   return (
-    <div className="p2 relative w-full overflow-x-scroll rounded-md bg-primarylight p-4  md:h-[12rem] md:w-[20rem]">
+    <div className="p2 relative w-full overflow-x-scroll scrollbar-hide my-2 rounded-md bg-primarylight p-4  md:h-[12rem] md:w-[20rem]">
       <div className="absolute left-0 right-0 top-0 flex h-8 w-full items-center justify-between rounded-t-md bg-primary p-1">
         <div className="ml-2 flex items-center">
           <BsFillCheckCircleFill

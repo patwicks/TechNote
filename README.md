@@ -11,6 +11,7 @@ A simple online daily task manager - MERN Project
 - React JS
 - Node/Express JS
 - MongoDB
+- Tailwindcss
 - Context API
 
 <p align="center">

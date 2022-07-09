@@ -28,7 +28,6 @@ export const AuthProvider = ({ children }) => {
         setAuthLoading(false);
         setIsLogin(res.data.isLogin);
         setCurrentUser(res.data.user);
-        console.log("hey check if login again!");
       }
     } catch (error) {
       console.log(error.response.data);

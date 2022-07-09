@@ -59,7 +59,7 @@ const Tasks = () => {
       ) : null}
 
       {/* task list container */}
-      <div className="flex h-[85vh] w-full flex-row flex-wrap justify-center gap-8 overflow-scroll bg-secondary-200 p-2 drop-shadow-xl dark:bg-maxdark md:gap-5">
+      <div className="flex h-[85vh] w-full flex-row flex-wrap justify-center gap-8 overflow-scroll scrollbar-hide bg-secondary-200 p-2 drop-shadow-xl dark:bg-maxdark md:gap-5">
         {unfinishedTasks?.length !== 0 ? (
           <>
             {unfinishedTasks?.map((item) => (
